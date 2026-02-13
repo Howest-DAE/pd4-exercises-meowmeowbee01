@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 1920593005132500459}
   - component: {fileID: 8981689271242515204}
   - component: {fileID: 4564072627387707211}
-  - component: {fileID: 6732890475955698515}
   - component: {fileID: 4624900851831735009}
+  - component: {fileID: 6732890475955698515}
   - component: {fileID: 8155126879026672194}
   m_Layer: 0
   m_Name: Player
@@ -141,21 +141,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6732890475955698515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6760007537073424048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efaea44738b76dc448afb0196852d3a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  _controller: {fileID: 4564072627387707211}
-  _moveInput: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  _moveSpeed: 3
 --- !u!114 &4624900851831735009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,6 +166,22 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
+--- !u!114 &6732890475955698515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6760007537073424048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efaea44738b76dc448afb0196852d3a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  ShowTopMostFoldoutHeaderGroup: 1
+  _controller: {fileID: 4564072627387707211}
+  _moveInput: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  _moveSpeed: 3
 --- !u!114 &8155126879026672194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,7 +206,7 @@ MonoBehaviour:
   RotationMaxInterpolationTime: 0.1
   ScaleLerpSmoothing: 1
   ScaleMaxInterpolationTime: 0.1
-  AuthorityMode: 0
+  AuthorityMode: 1
   TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1

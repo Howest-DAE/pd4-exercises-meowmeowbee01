@@ -1,9 +1,10 @@
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Assets.Scripts
 {
-	public class PlayerMovement : MonoBehaviour
+	public class PlayerMovement : NetworkBehaviour
 	{
 		[SerializeField]
 		private CharacterController _controller;
@@ -17,10 +18,12 @@ namespace Assets.Scripts
 		}
 		void FixedUpdate()
 		{
-			Vector2 input = _moveInput.action.ReadValue<Vector2>();
-			Vector3 moveVelocity = new Vector3(input.x, 0f, input.y) * _moveSpeed;
-			Debug.Log(input);
-			_controller.Move(moveVelocity * Time.fixedDeltaTime);
+			if (IsOwner)
+			{
+				Vector2 input = _moveInput.action.ReadValue<Vector2>();
+				Vector3 moveVelocity = new Vector3(input.x, 0f, input.y) * _moveSpeed;
+				_controller.Move(moveVelocity * Time.fixedDeltaTime);
+			}
 		}
 	}
 }
