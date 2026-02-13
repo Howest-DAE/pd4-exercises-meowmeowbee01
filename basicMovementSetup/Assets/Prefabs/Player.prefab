@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4624900851831735009}
   - component: {fileID: 6732890475955698515}
   - component: {fileID: 8155126879026672194}
+  - component: {fileID: -1483138440067533}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -181,7 +182,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   _controller: {fileID: 4564072627387707211}
   _moveInput: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  _moveSpeed: 3
+  _moveSpeed: 10
 --- !u!114 &8155126879026672194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,3 +229,18 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
+--- !u!114 &-1483138440067533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6760007537073424048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5133a2d48701e114f91ca1a14391d7fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.PlayerIdentifier
+  ShowTopMostFoldoutHeaderGroup: 1
+  hostMaterial: {fileID: 2100000, guid: d9fd6f68d2e211e4c960b954c7befa7a, type: 2}
+  localSphere: {fileID: 8092044320807899852, guid: d4da794813b6c5947a9b5476de62ec42, type: 3}
