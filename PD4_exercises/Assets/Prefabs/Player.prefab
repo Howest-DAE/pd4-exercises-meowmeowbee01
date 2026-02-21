@@ -163,14 +163,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5370496255074182795}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0.55}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8567084917740282091}
   m_Father: {fileID: 7520873004259906084}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -257,9 +257,10 @@ GameObject:
   - component: {fileID: 8155126879026672194}
   - component: {fileID: -1483138440067533}
   - component: {fileID: 3214121521136287118}
+  - component: {fileID: 1779573621518524005}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -278,6 +279,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8472336112481943523}
+  - {fileID: 3782320477454917070}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3768281768189082738
@@ -395,7 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 33437921
+  GlobalObjectIdHash: 3034126149
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -501,3 +503,95 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   _countText: {fileID: 6086741412562895372}
   _inputAction: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+--- !u!114 &1779573621518524005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6760007537073424048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a7cb4c82b016b943aff66ff7f4ba9e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMessageBubble
+  _rootGameObject: {fileID: 3655173189347713357}
+  _messageText: {fileID: 9165998496511395724}
+--- !u!1001 &573162458308417342
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7520873004259906084}
+    m_Modifications:
+    - target: {fileID: 3713719645131426544, guid: 73058e332eccbe2458886ce10b0ebf8f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3713719645131426544, guid: 73058e332eccbe2458886ce10b0ebf8f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3713719645131426544, guid: 73058e332eccbe2458886ce10b0ebf8f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3713719645131426544, guid: 73058e332eccbe2458886ce10b0ebf8f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3713719645131426544, guid: 73058e332eccbe2458886ce10b0ebf8f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3713719645131426544, guid: 73058e332eccbe2458886ce10b0ebf8f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3713719645131426544, guid: 73058e332eccbe2458886ce10b0ebf8f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3713719645131426544, guid: 73058e332eccbe2458886ce10b0ebf8f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3713719645131426544, guid: 73058e332eccbe2458886ce10b0ebf8f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3713719645131426544, guid: 73058e332eccbe2458886ce10b0ebf8f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3840867474409666163, guid: 73058e332eccbe2458886ce10b0ebf8f, type: 3}
+      propertyPath: m_Name
+      value: MessageBubble
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 73058e332eccbe2458886ce10b0ebf8f, type: 3}
+--- !u!1 &3655173189347713357 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3840867474409666163, guid: 73058e332eccbe2458886ce10b0ebf8f, type: 3}
+  m_PrefabInstance: {fileID: 573162458308417342}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3782320477454917070 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3713719645131426544, guid: 73058e332eccbe2458886ce10b0ebf8f, type: 3}
+  m_PrefabInstance: {fileID: 573162458308417342}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9165998496511395724 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8701063510949597362, guid: 73058e332eccbe2458886ce10b0ebf8f, type: 3}
+  m_PrefabInstance: {fileID: 573162458308417342}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI

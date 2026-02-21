@@ -3,7 +3,7 @@ using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerMessageBubble : MonoBehaviour
+public class PlayerMessageBubble : NetworkBehaviour
 {
 	[SerializeField]
 	private GameObject _rootGameObject;
@@ -14,6 +14,12 @@ public class PlayerMessageBubble : MonoBehaviour
 	private void Awake()
 	{
 		_rootGameObject.SetActive(false);
+	}
+
+	[Rpc(SendTo.Owner)] //[Rpc(SendTo.ClientsAndHost)]
+	public void ShowMessageRpc(string message)
+	{
+		ShowMessage(message);
 	}
 
 	public void ShowMessage(string message)
@@ -62,7 +68,8 @@ public class PlayerMessageBubble : MonoBehaviour
 
 	//Easing functions micro class, TIP: For full production, use full easing library instead
 	//Source: https://gist.github.com/Kryzarel/bba64622057f21a1d6d44879f9cd7bd4
-	private class Easing {
+	private class Easing
+	{
 		public static float InElastic(float t) => 1 - OutElastic(1 - t);
 		public static float OutElastic(float t)
 		{
