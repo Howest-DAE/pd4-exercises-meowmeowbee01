@@ -35,10 +35,9 @@ namespace Assets.AsyncExercises
 			await LoadTextureAsync(logo, _urls[_urlIndex]);
 		}
 
-		private async Task LoadTextureAsync(VisualElement element, string url)
+		private static async Task LoadTextureAsync(VisualElement element, string url)
 		{
-			TextureLoader loader = new();
-			Texture2D texture = await loader.LoadTextureAsync(url);
+			Texture2D texture = await TextureLoader.LoadTextureAsync(url);
 			element.style.backgroundImage = texture;
 		}
 	}

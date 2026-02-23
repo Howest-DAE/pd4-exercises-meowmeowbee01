@@ -1,73 +1,95 @@
+using Assets.AsyncExercises;
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 
-public class MaterialLoader : MonoBehaviour
+namespace Assets.W03_MaterialLoader.Scripts
 {
-	static readonly string[] _textureProperties = new[]
+	public class MaterialLoader : MonoBehaviour
 	{
-		"_BaseMap", //Albedo
-		"_OcclusionMap", //AO
-		"_MetallicGlossMap", //Metallic
-		"_BumpMap", //Normal
-		"_ParallaxMap" //Height	
-	};
-
-	[SerializeField]
-	Material _templateMaterial;
-
-	[SerializeField]
-	Material _invalidMaterial;
-
-	[SerializeField]
-	private float _spacing = 1f;
-
-	[SerializeField]
-	private string _filePath;
-
-	// Start is called once before the first execution of Update after the MonoBehaviour is created
-	void Start()
-	{
-		int texturesPerMaterial = _textureProperties.Length;
-
-		//TODO: read lines from file
-
-		int numMaterials = 3; //TODO: calculate based on num textures
-
-		Vector3 spawnPos = -Vector3.right * (numMaterials - 1) * 0.5f * _spacing;
-		Vector3 spacingOffset = Vector3.right * _spacing; //add this to spawnPos after every material spawn
-
-		//TODO: For every material:
-		//	create primitive,
-		//	load textures,
-		//	apply textures
-	}
-
-	GameObject CreateMaterialSphere(Vector3 position)
-	{
-		GameObject primitive = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-		primitive.transform.SetParent(transform);
-		primitive.transform.localPosition = position;
-
-		return primitive;
-	}
-
-	void ApplyTextures(GameObject primitive, List<Texture2D> textures)
-	{
-		//This will throw an exception when values are not equal
-		Assert.AreEqual(_textureProperties.Length, textures.Count, $"Number of textures to apply ({textures.Count}) doesn't match the number of texture properties ({_textureProperties.Length})");
-
-		//Create a new material based on the template material
-		Material material = new Material(_templateMaterial);
-		primitive.GetComponent<Renderer>().sharedMaterial = material;
-
-		//Apply each texture per texture property
-		for (int idx = 0; idx < _textureProperties.Length; ++idx)
+		static readonly string[] _textureProperties = new[]
 		{
-			string propertyName = _textureProperties[idx];
-			Texture2D texture = textures[idx];
+			"_BaseMap", //Albedo
+			"_OcclusionMap", //AO
+			"_MetallicGlossMap", //Metallic
+			"_BumpMap", //Normal
+			"_ParallaxMap" //Height	
+		};
 
-			material.SetTexture(propertyName, texture);
+		[SerializeField]
+		Material _templateMaterial;
+
+		[SerializeField]
+		Material _invalidMaterial;
+
+		[SerializeField]
+		private float _spacing = 1f;
+
+		[SerializeField]
+		private string _filePath;
+
+		async void Start()
+		{
+			int texturesPerMaterial = _textureProperties.Length;
+
+			var lines = await File.ReadAllLinesAsync(_filePath);
+
+			int materialCount = lines.Length / texturesPerMaterial;
+
+			Vector3 spawnPosition = (materialCount - 1) * _spacing * 0.5f * -Vector3.right;
+			Vector3 spacingOffset = Vector3.right * _spacing;
+
+			for (int i = 0; i < materialCount; i++)
+			{
+				var sphere = CreateMaterialSphere(spawnPosition);
+				spawnPosition += spacingOffset;
+
+				try
+				{
+					var textureTasks = lines
+						.Skip(i * texturesPerMaterial)
+						.Take(texturesPerMaterial)
+						.Select(s => TextureLoader.LoadTextureAsync(s));
+					var textures = (await Task.WhenAll(textureTasks)).ToList();
+
+					ApplyTextures(sphere, textures);
+				}
+				catch (System.InvalidOperationException)
+				{
+					sphere.GetComponent<MeshRenderer>().material = _invalidMaterial;
+				}
+			}
+		}
+
+		GameObject CreateMaterialSphere(Vector3 position)
+		{
+			GameObject primitive = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+			primitive.transform.SetParent(transform);
+			primitive.transform.localPosition = position;
+
+			return primitive;
+		}
+
+		void ApplyTextures(GameObject primitive, List<Texture2D> textures)
+		{
+			//This will throw an exception when values are not equal
+			Assert.AreEqual(_textureProperties.Length, textures.Count, $"Number of textures to apply ({textures.Count}) doesn't match the number of texture properties ({_textureProperties.Length})");
+
+			//Create a new material based on the template material
+			Material material = new Material(_templateMaterial);
+			primitive.GetComponent<Renderer>().sharedMaterial = material;
+
+			//Apply each texture per texture property
+			for (int idx = 0; idx < _textureProperties.Length; ++idx)
+			{
+				string propertyName = _textureProperties[idx];
+				Texture2D texture = textures[idx];
+
+				material.SetTexture(propertyName, texture);
+			}
 		}
 	}
 }
