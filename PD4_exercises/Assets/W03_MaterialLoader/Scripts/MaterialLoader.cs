@@ -1,10 +1,10 @@
 using Assets.AsyncExercises;
-using NUnit.Framework;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Assets.W03_MaterialLoader.Scripts
 {
@@ -42,28 +42,29 @@ namespace Assets.W03_MaterialLoader.Scripts
 			Vector3 spawnPosition = (materialCount - 1) * _spacing * 0.5f * -Vector3.right;
 			Vector3 spacingOffset = Vector3.right * _spacing;
 
-			for (int i = 0; i < materialCount; i++)
-			{
-				ApplyTextures(CreateMaterialSphere(spawnPosition += spacingOffset), (await Task.WhenAll(lines.Skip(i * texturesPerMaterial).Take(texturesPerMaterial).Select(s => TextureLoader.LoadTextureAsync(s)))).ToList());
+			Enumerable.Range(0, materialCount).ToList().ForEach(async i => ApplyTextures(CreateMaterialSphere(spawnPosition += spacingOffset), (await Task.WhenAll(lines.Skip(i * texturesPerMaterial).Take(texturesPerMaterial).Select(s => TextureLoader.LoadTextureAsync(s)))).ToList()));
 
-				//var sphere = CreateMaterialSphere(spawnPosition);
-				//spawnPosition += spacingOffset;
+			//for (int i = 0; i < materialCount; i++)
+			//{
+			//	ApplyTextures(CreateMaterialSphere(spawnPosition += spacingOffset), (await Task.WhenAll(lines.Skip(i * texturesPerMaterial).Take(texturesPerMaterial).Select(s => TextureLoader.LoadTextureAsync(s)))).ToList());
 
-				//try
-				//{
-				//	var textureTasks = lines
-				//		.Skip(i * texturesPerMaterial)
-				//		.Take(texturesPerMaterial)
-				//		.Select(s => TextureLoader.LoadTextureAsync(s));
-				//	var textures = (await Task.WhenAll(textureTasks)).ToList();
+			//	//var sphere = CreateMaterialSphere(spawnPosition);
+			//	//spawnPosition += spacingOffset;
+			//	//try
+			//	//{
+			//	//	var textureTasks = lines
+			//	//		.Skip(i * texturesPerMaterial)
+			//	//		.Take(texturesPerMaterial)
+			//	//		.Select(s => TextureLoader.LoadTextureAsync(s));
+			//	//	var textures = (await Task.WhenAll(textureTasks)).ToList();
 
-				//	ApplyTextures(sphere, textures);
-				//}
-				//catch (System.InvalidOperationException)
-				//{
-				//	sphere.GetComponent<MeshRenderer>().material = _invalidMaterial;
-				//}
-			}
+			//	//	ApplyTextures(sphere, textures);
+			//	//}
+			//	//catch (System.InvalidOperationException)
+			//	//{
+			//	//	sphere.GetComponent<MeshRenderer>().material = _invalidMaterial;
+			//	//}
+			//}
 		}
 
 		GameObject CreateMaterialSphere(Vector3 position)
