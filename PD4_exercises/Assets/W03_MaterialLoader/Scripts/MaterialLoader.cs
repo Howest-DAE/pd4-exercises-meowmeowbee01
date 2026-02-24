@@ -44,23 +44,25 @@ namespace Assets.W03_MaterialLoader.Scripts
 
 			for (int i = 0; i < materialCount; i++)
 			{
-				var sphere = CreateMaterialSphere(spawnPosition);
-				spawnPosition += spacingOffset;
+				ApplyTextures(CreateMaterialSphere(spawnPosition += spacingOffset), (await Task.WhenAll(lines.Skip(i * texturesPerMaterial).Take(texturesPerMaterial).Select(s => TextureLoader.LoadTextureAsync(s)))).ToList());
 
-				try
-				{
-					var textureTasks = lines
-						.Skip(i * texturesPerMaterial)
-						.Take(texturesPerMaterial)
-						.Select(s => TextureLoader.LoadTextureAsync(s));
-					var textures = (await Task.WhenAll(textureTasks)).ToList();
+				//var sphere = CreateMaterialSphere(spawnPosition);
+				//spawnPosition += spacingOffset;
 
-					ApplyTextures(sphere, textures);
-				}
-				catch (System.InvalidOperationException)
-				{
-					sphere.GetComponent<MeshRenderer>().material = _invalidMaterial;
-				}
+				//try
+				//{
+				//	var textureTasks = lines
+				//		.Skip(i * texturesPerMaterial)
+				//		.Take(texturesPerMaterial)
+				//		.Select(s => TextureLoader.LoadTextureAsync(s));
+				//	var textures = (await Task.WhenAll(textureTasks)).ToList();
+
+				//	ApplyTextures(sphere, textures);
+				//}
+				//catch (System.InvalidOperationException)
+				//{
+				//	sphere.GetComponent<MeshRenderer>().material = _invalidMaterial;
+				//}
 			}
 		}
 

@@ -6,7 +6,7 @@ https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/rocky_terrain_02/rocky_t
 https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/cliff_side/cliff_side_diff_1k.png
 https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/cliff_side/cliff_side_ao_1k.png
 https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/cliff_side/cliff_side_arm_1k.png
-//https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/cliff_side/cliff_side_nor_dx_1k.png
+https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/cliff_side/cliff_side_nor_dx_1k.png
 https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/cliff_side/cliff_side_disp_1k.png
 https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/gray_rocks/gray_rocks_diff_1k.png
 https://dl.polyhaven.org/file/ph-assets/Textures/png/1k/gray_rocks/gray_rocks_ao_1k.png
