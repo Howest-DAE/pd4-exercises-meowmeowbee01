@@ -15,8 +15,9 @@ namespace Assets.Scripts
 
 		public override void OnNetworkSpawn()
 		{
+			NetworkManager.ConnectedClients[OwnerClientId].PlayerObject.GetComponent<PersistentPlayer>().Player = NetworkObject;
 			meshRenderer = GetComponent<MeshRenderer>();
-			if (IsLocalPlayer)
+			if (IsOwner)
 			{
 				Instantiate(localSphere, transform, false);
 			}
