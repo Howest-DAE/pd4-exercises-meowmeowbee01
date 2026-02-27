@@ -37,8 +37,12 @@ namespace Assets.Scripts
 				//... apply gravity
 				//auto rotate
 				Quaternion targetRotation = Quaternion.LookRotation(_moveDirection);
-				transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation,
-				_rotationSpeed * Time.fixedDeltaTime);
+				transform.rotation = Quaternion.RotateTowards
+				(
+					transform.rotation,
+					targetRotation,
+					_rotationSpeed * Time.fixedDeltaTime
+				);
 			}
 		}
 

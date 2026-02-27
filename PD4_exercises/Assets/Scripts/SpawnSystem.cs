@@ -1,3 +1,4 @@
+using System.Linq;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -16,12 +17,12 @@ namespace Assets.Scripts
 			{
 				_spawnPositions[i].gameObject.SetActive(false);
 				int index = i; //the lambda uses the variable, not the value. therefore a local scope copy of the variable is needed
-				_spawnPositions[i].Clicked += (s, e) => SpawnPlayerAvatarRpc(index, NetworkManager.Singleton.LocalClientId);
-				//_spawnPositions[i].Clicked += (s, e) =>
-				//{
-				//	SpawnPlayerAvatarRpc(index, NetworkManager.Singleton.LocalClientId);
-				//	_spawnPositions.ToList().ForEach(s => s.gameObject.SetActive(false));
-				//};
+							   //_spawnPositions[i].Clicked += (s, e) => SpawnPlayerAvatarRpc(index, NetworkManager.Singleton.LocalClientId);
+				_spawnPositions[i].Clicked += (s, e) =>
+				{
+					SpawnPlayerAvatarRpc(index, NetworkManager.Singleton.LocalClientId);
+					_spawnPositions.ToList().ForEach(spawn => spawn.gameObject.SetActive(false));
+				};
 			}
 		}
 
