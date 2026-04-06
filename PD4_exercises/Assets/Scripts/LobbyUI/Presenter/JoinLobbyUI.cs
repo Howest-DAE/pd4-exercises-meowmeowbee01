@@ -1,10 +1,7 @@
 using PD4.LobbySystem.Model;
 using PD4.MVPBase.Presenter;
-using System;
 using System.Linq;
-using System.Threading.Tasks;
 using Unity.Services.Lobbies.Models;
-using Unity.VisualScripting;
 using UnityEngine.UIElements;
 
 namespace PD4.LobbySystem.Presenter
@@ -40,9 +37,9 @@ namespace PD4.LobbySystem.Presenter
 			item.Q<Label>().text = lobby.Name;
 		}
 
-		private void _refreshButton_clicked()
+		private async void _refreshButton_clicked()
 		{
-			Model.RefreshList();
+			await Model.RefreshList();
 		}
 		private void _joinButton_clicked()
 		{

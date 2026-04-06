@@ -1,10 +1,9 @@
 using PD4.LobbySystem.Model;
 using PD4.MVPBase.Presenter;
 using System;
-using System.ComponentModel;
 using UnityEngine.UIElements;
 
-public class WaitPanel: PresenterBase<LobbySystemModel>
+public class WaitPanel : PresenterBase<LobbySystemModel>
 {
 	public event EventHandler LeftSession;
 	private Label _playerCountLabel;
@@ -19,11 +18,10 @@ public class WaitPanel: PresenterBase<LobbySystemModel>
 	private async void _leaveButton_clicked()
 	{
 		Model.LeaveLobby();
-	
 	}
 
 	public override void OnModelPropertyChanged(string propertyName)
 	{
-		
+
 	}
 }

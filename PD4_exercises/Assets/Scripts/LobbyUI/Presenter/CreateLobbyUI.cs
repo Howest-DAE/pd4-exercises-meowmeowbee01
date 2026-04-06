@@ -1,7 +1,5 @@
 using PD4.LobbySystem.Model;
 using PD4.MVPBase.Presenter;
-using System;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -20,15 +18,14 @@ namespace PD4.LobbySystem.Presenter
 			_lobbyNameField.RegisterValueChangedCallback(NameValueChanged);
 
 			//if _createButton_clicked is async, use this line
-			//_createButton.clicked += async () => _createButton_clicked();
-			_createButton.clicked += _createButton_clicked;
+			_createButton.clicked += async () => _createButton_clicked();
 
 		}
 
-		private void _createButton_clicked()
+		private async void _createButton_clicked()
 		{
 			Debug.Log($"Creating lobby {Model.LobbyName}");
-			Model.CreateLobby();
+			await Model.CreateLobby();
 		}
 
 		private void NameValueChanged(ChangeEvent<string> nameChangeEvent)
