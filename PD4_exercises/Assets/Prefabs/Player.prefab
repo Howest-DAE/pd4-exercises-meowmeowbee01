@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8155126879026672194}
   - component: {fileID: 4350521596697734918}
   - component: {fileID: -3637304487531835204}
+  - component: {fileID: 948785645653156315}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -167,7 +168,7 @@ MonoBehaviour:
   _dropWeaponAction: {fileID: -3592124996981692401, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _fireWeaponAction: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _pickupRange: 5
-  _weaponAnchor: {fileID: 7714005892974270775}
+  _weaponAnchor: {fileID: 7728741552704989207}
 --- !u!136 &-3637304487531835204
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -191,6 +192,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &948785645653156315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6760007537073424048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e6158faa29ab014db6ce94a1abc98d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!1001 &9159563341458123830
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -253,8 +267,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7190485751858472876, guid: 9b3873bbbefd0df48a0e54663954e370, type: 3}
   m_PrefabInstance: {fileID: 9159563341458123830}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &7714005892974270775 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1445911844153554177, guid: 9b3873bbbefd0df48a0e54663954e370, type: 3}
+--- !u!114 &7728741552704989207 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1467979046301533217, guid: 9b3873bbbefd0df48a0e54663954e370, type: 3}
   m_PrefabInstance: {fileID: 9159563341458123830}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac2ac060d3dd06f47bfcafcb1ffa9def, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.FollowTransform

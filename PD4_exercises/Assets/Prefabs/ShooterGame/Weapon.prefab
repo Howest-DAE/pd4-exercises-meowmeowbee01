@@ -371,8 +371,8 @@ GameObject:
   - component: {fileID: 3966273972520034288}
   - component: {fileID: 2883837341181041310}
   - component: {fileID: 7546846409912679693}
-  - component: {fileID: 1992013225940650713}
   - component: {fileID: 1468322040846933562}
+  - component: {fileID: 1100268043187593678}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -446,19 +446,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.11516234, y: 0.455252, z: 0.5991323}
   m_Center: {x: 0, y: 0.017539233, z: 0.1896962}
---- !u!114 &1992013225940650713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2110325744636175056}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3a26a37438f8a44c839dc227ed23d52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Tooltip
-  _toolTipObject: {fileID: 2328402762586241538}
 --- !u!114 &1468322040846933562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,6 +461,19 @@ MonoBehaviour:
   _ammoText: {fileID: 737874988979460444}
   _rigidBody: {fileID: 2883837341181041310}
   _muzzleFlashObject: {fileID: 4857939809969934022}
+--- !u!114 &1100268043187593678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110325744636175056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3a26a37438f8a44c839dc227ed23d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tooltip
+  _toolTipObject: {fileID: 2328402762586241538}
 --- !u!1 &2328402762586241538
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,7 +483,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6233172105475694922}
-  - component: {fileID: 8295130265810608333}
+  - component: {fileID: 8531870801961967704}
   m_Layer: 0
   m_Name: AmmoTooltip
   m_TagString: Untagged
@@ -507,7 +507,7 @@ Transform:
   - {fileID: 9063806828606060277}
   m_Father: {fileID: 3966273972520034288}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8295130265810608333
+--- !u!114 &8531870801961967704
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -516,7 +516,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2328402762586241538}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bae35a6c1efa6040bb346ab0fc9c7cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 69d054d45d305ec45abf7165f56fbe03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Billboarding
 --- !u!1 &2918598704759692453

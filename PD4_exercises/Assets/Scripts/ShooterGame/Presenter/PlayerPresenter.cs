@@ -1,13 +1,17 @@
+using Assets.Scripts;
 using PD4.MVPBase.Presenter;
 using PD4.ShooterGame.Model;
+using PD4.ShooterGame.Network;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace PD4.ShooterGame.Presenter
 {
+	[RequireComponent(typeof(PlayerSync))]
 	public class PlayerPresenter : PresenterMonoBehaviour<PlayerModel>
 	{
 		private GamePresenter _gamePresenter;
+		private PlayerSync _playerSync;
 
 		[Header("Input")]
 		[SerializeField]
@@ -21,9 +25,9 @@ namespace PD4.ShooterGame.Presenter
 		[SerializeField]
 		private float _pickupRange = 5f;
 
-		//TODO: Replace with FollowTransform component to prevent parenting
+		// Replace with FollowTransform component to prevent parenting
 		[SerializeField]
-		private Transform _weaponAnchor;
+		private FollowTransform _weaponAnchor;
 		private Transform _pickedupWeapon = null;
 
 		public override void OnModelPropertyChanged(string propertyName)
@@ -39,27 +43,33 @@ namespace PD4.ShooterGame.Presenter
 			if (Model.PickedUpWeapon != null)
 			{
 				ulong weaponId = Model.PickedUpWeapon.Id;
-				WeaponPresenter weapon = _gamePresenter.FindWeaponById(weaponId);
+				WeaponPresenter weapon = GamePresenter.FindWeaponById(weaponId);
 				_pickedupWeapon = weapon.transform;
 
-				//TODO: Fake parenting using FollowTransform (can't parent NetworkObjects)
-				_pickedupWeapon.SetParent(_weaponAnchor);
+				// Fake parenting using FollowTransform (can't parent NetworkObjects)
+				_weaponAnchor.AddChild(_pickedupWeapon);
 				_pickedupWeapon.localPosition = Vector3.zero;
 				_pickedupWeapon.localRotation = Quaternion.identity;
 			}
 			else if (_pickedupWeapon != null)//drop weapon
 			{
-				//TODO: release from fake parenting
-				_pickedupWeapon.SetParent(null);
+				// release from fake parenting
+				_weaponAnchor.RemoveChild(_pickedupWeapon);
 				_pickedupWeapon.transform.localScale = Vector3.one;
 				_pickedupWeapon = null;
 			}
 		}
 
-		private void Start()
+		private void Awake()
 		{
 			Model = new PlayerModel();
 
+			_playerSync = GetComponent<PlayerSync>();
+			_playerSync.Model = Model;
+		}
+
+		private void Start()
+		{
 			//Add self to game presenter
 			_gamePresenter = FindFirstObjectByType<GamePresenter>();
 			_gamePresenter?.Model.AddPlayer(Model);
@@ -77,29 +87,32 @@ namespace PD4.ShooterGame.Presenter
 
 		private void PickupWeaponAction_performed(InputAction.CallbackContext context)
 		{
+			if (!_playerSync.IsOwner) return;
 			if (Model.PickedUpWeapon != null) return; //already holding a weapon
 
-			WeaponPresenter nearestWeapon = _gamePresenter.FindNearestWeapon(transform.position);
+			WeaponPresenter? nearestWeapon = GamePresenter.FindNearestWeapon(transform.position);
 
 			if (nearestWeapon == null) return;
-			if ((transform.position - nearestWeapon.transform.position).sqrMagnitude > _pickupRange * _pickupRange) return; // too far
+			if (nearestWeapon.DistanceSq(transform.position) > _pickupRange * _pickupRange) return; // too far
 
-			Model.PickedUpWeapon = nearestWeapon.Model;
-
+			_playerSync.SetWeaponRpc(nearestWeapon.Model.Id);
+			//Model.PickedUpWeapon = nearestWeapon.Model;
 		}
+
 		private void FireWeaponAction_performed(InputAction.CallbackContext context)
 		{
+			if (!_playerSync.IsOwner) return;
 			if (Model.PickedUpWeapon == null) return; //not holding a weapon
 			Model.PickedUpWeapon.Fire();
-
+			//
 		}
+
 		private void DropWeaponAction_performed(InputAction.CallbackContext context)
 		{
+			if (!_playerSync.IsOwner) return;
 			if (Model.PickedUpWeapon == null) return; //not holding a weapon
-
-			Model.PickedUpWeapon = null;
+			_playerSync.DropWeaponRpc();
+			//Model.PickedUpWeapon = null;
 		}
-
-
 	}
 }

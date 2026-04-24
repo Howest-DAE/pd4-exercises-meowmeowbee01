@@ -24,13 +24,16 @@ namespace PD4.ShooterGame.Presenter
 
 		public override void OnModelPropertyChanged(string propertyName)
 		{
-			if (propertyName == nameof(Model.Ammo))
+			switch (propertyName)
 			{
-				UpdateAmmoText();
-			}
-			if (propertyName == nameof(Model.IsPickedUp))
-			{
-				_rigidBody.isKinematic = Model.IsPickedUp;
+				case nameof(Model.Ammo):
+					UpdateAmmoText();
+					break;
+				case nameof(Model.IsPickedUp):
+					_rigidBody.isKinematic = Model.IsPickedUp;
+					break;
+				default:
+					break;
 			}
 		}
 
@@ -58,6 +61,11 @@ namespace PD4.ShooterGame.Presenter
 		private void UpdateAmmoText()
 		{
 			_ammoText.text = $"Ammo: {Model.Ammo}";
+		}
+
+		public float DistanceSq(Vector3 position)
+		{
+			return (position - transform.position).sqrMagnitude;
 		}
 	}
 }

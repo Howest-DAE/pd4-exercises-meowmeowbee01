@@ -11,13 +11,9 @@ namespace PD4.ShooterGame.Model
 			get => _isPressed;
 			set
 			{
-				if (_isPressed == value)
-					return;
+				if (_isPressed == value) return;
 				_isPressed = value;
-				if (_isPressed) //when IsPressed is set to "True", increase the counter
-				{
-					++Counter;
-				}
+				if (_isPressed) ++Counter;
 				OnPropertyChanged();
 			}
 		}
@@ -29,8 +25,7 @@ namespace PD4.ShooterGame.Model
 			get => _counter;
 			set
 			{
-				if (_counter == value)
-					return;
+				if (_counter == value) return;
 				_counter = value;
 				OnPropertyChanged();
 			}

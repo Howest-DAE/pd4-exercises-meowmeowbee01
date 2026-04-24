@@ -1,24 +1,28 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+
+namespace PD4.ShooterGame.Presenter
 {
-
-	[SerializeField]
-	private GameObject _toolTipObject;
-
-	private void Start()
+	public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 	{
-		_toolTipObject?.SetActive(false);
-	}
 
-	public void OnPointerEnter(PointerEventData eventData)
-	{
-		_toolTipObject?.SetActive(true);
-	}
+		[SerializeField]
+		private GameObject _toolTipObject;
 
-	public void OnPointerExit(PointerEventData eventData)
-	{
-		_toolTipObject?.SetActive(false);
+		private void Start()
+		{
+			_toolTipObject?.SetActive(false);
+		}
+
+		public void OnPointerEnter(PointerEventData eventData)
+		{
+			_toolTipObject?.SetActive(true);
+		}
+
+		public void OnPointerExit(PointerEventData eventData)
+		{
+			_toolTipObject?.SetActive(false);
+		}
 	}
 }
