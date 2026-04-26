@@ -1,20 +1,25 @@
 using PD4.MVPBase.Presenter;
 using PD4.ShooterGame.Model;
+using PD4.ShooterGame.Network;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 
 namespace PD4.ShooterGame.Presenter
 {
+	[RequireComponent(typeof(WeaponSync))]
 	public class WeaponPresenter : PresenterMonoBehaviour<WeaponModel>
 	{
 		[SerializeField] private TextMeshProUGUI _ammoText;
 		[SerializeField] private Rigidbody _rigidBody;
 		[SerializeField] private GameObject _muzzleFlashObject;
 
+		private WeaponSync _sync;
 		private void Awake()
 		{
-			Model = new WeaponModel() { Ammo = 30 }; // default ammo for testing.
+			Model = new();
+			_sync = GetComponent<WeaponSync>();
+			_sync.Model = Model;
 		}
 
 		private void Start()

@@ -373,6 +373,8 @@ GameObject:
   - component: {fileID: 7546846409912679693}
   - component: {fileID: 1468322040846933562}
   - component: {fileID: 1100268043187593678}
+  - component: {fileID: 4230540927424241630}
+  - component: {fileID: 1259774921975281812}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -474,6 +476,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tooltip
   _toolTipObject: {fileID: 2328402762586241538}
+--- !u!114 &4230540927424241630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110325744636175056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
+  GlobalObjectIdHash: 1402893906
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
+--- !u!114 &1259774921975281812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110325744636175056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc63f726dcd977842b6a5a03b9db109a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PD4.ShooterGame.Network.WeaponSync
+  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!1 &2328402762586241538
 GameObject:
   m_ObjectHideFlags: 0

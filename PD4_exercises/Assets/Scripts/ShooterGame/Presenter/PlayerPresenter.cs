@@ -74,45 +74,42 @@ namespace PD4.ShooterGame.Presenter
 			_gamePresenter = FindFirstObjectByType<GamePresenter>();
 			_gamePresenter?.Model.AddPlayer(Model);
 
-			//Register input actions
-			_fireWeaponAction.action.Enable();
-			_pickupWeaponAction.action.Enable();
-			_dropWeaponAction.action.Enable();
+			if (_playerSync.IsOwner)
+			{
+				//Register input actions
+				_fireWeaponAction.action.Enable();
+				_pickupWeaponAction.action.Enable();
+				_dropWeaponAction.action.Enable();
 
-			_fireWeaponAction.action.performed += FireWeaponAction_performed;
-			_pickupWeaponAction.action.performed += PickupWeaponAction_performed;
-			_dropWeaponAction.action.performed += DropWeaponAction_performed;
+				_fireWeaponAction.action.performed += FireWeaponAction_performed;
+				_pickupWeaponAction.action.performed += PickupWeaponAction_performed;
+				_dropWeaponAction.action.performed += DropWeaponAction_performed;
+			}
 
 		}
 
 		private void PickupWeaponAction_performed(InputAction.CallbackContext context)
 		{
-			if (!_playerSync.IsOwner) return;
 			if (Model.PickedUpWeapon != null) return; //already holding a weapon
 
-			WeaponPresenter? nearestWeapon = GamePresenter.FindNearestWeapon(transform.position);
+			var nearestWeapon = GamePresenter.FindNearestWeapon(transform.position);
 
 			if (nearestWeapon == null) return;
 			if (nearestWeapon.DistanceSq(transform.position) > _pickupRange * _pickupRange) return; // too far
 
 			_playerSync.SetWeaponRpc(nearestWeapon.Model.Id);
-			//Model.PickedUpWeapon = nearestWeapon.Model;
 		}
 
 		private void FireWeaponAction_performed(InputAction.CallbackContext context)
 		{
-			if (!_playerSync.IsOwner) return;
 			if (Model.PickedUpWeapon == null) return; //not holding a weapon
-			Model.PickedUpWeapon.Fire();
-			//
+			_playerSync.FireWeaponRpc();
 		}
 
 		private void DropWeaponAction_performed(InputAction.CallbackContext context)
 		{
-			if (!_playerSync.IsOwner) return;
 			if (Model.PickedUpWeapon == null) return; //not holding a weapon
 			_playerSync.DropWeaponRpc();
-			//Model.PickedUpWeapon = null;
 		}
 	}
 }

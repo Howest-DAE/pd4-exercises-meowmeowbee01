@@ -13,12 +13,12 @@ namespace PD4.ShooterGame.Network
 		{
 			WeaponId = new();
 
-			WeaponId.OnValueChanged += (old, value) => Model.PickedUpWeapon = GamePresenter.FindWeaponById(value).Model;
+			WeaponId.OnValueChanged += (old, value) => Model.PickedUpWeapon = GamePresenter.FindWeaponById(value)?.Model;
 		}
 
 		public override void OnNetworkSpawn()
 		{
-			Model.PickedUpWeapon = GamePresenter.FindWeaponById(WeaponId.Value).Model;
+			Model.PickedUpWeapon = GamePresenter.FindWeaponById(WeaponId.Value)?.Model;
 
 			Model.PropertyChanged += OnWeaponChanged;
 		}
@@ -41,6 +41,12 @@ namespace PD4.ShooterGame.Network
 		public void SetWeaponRpc(ulong id)
 		{
 			Model.PickedUpWeapon = GamePresenter.FindWeaponById(id).Model;
+		}
+
+		[Rpc(SendTo.Everyone)]
+		public void FireWeaponRpc()
+		{
+			Model.PickedUpWeapon.Fire();
 		}
 
 		[Rpc(SendTo.Everyone)]
