@@ -52,8 +52,6 @@ namespace PD4.ShooterGame.Model
 
 		public void Fire()
 		{
-			if (_ammo == 0) return;
-			--Ammo;
 			OnFired();
 		}
 

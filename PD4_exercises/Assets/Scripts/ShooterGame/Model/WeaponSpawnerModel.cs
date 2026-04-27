@@ -9,7 +9,7 @@ namespace PD4.ShooterGame.Model
 		private float _spawnCooldownTimer = 0f;
 
 
-		private bool _canSpawn;
+		private bool _canSpawn = true;
 		public bool CanSpawn
 		{
 			get => _canSpawn;

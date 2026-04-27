@@ -48,8 +48,7 @@ namespace PD4.ShooterGame.Presenter
 
 				// Fake parenting using FollowTransform (can't parent NetworkObjects)
 				_weaponAnchor.AddChild(_pickedupWeapon);
-				_pickedupWeapon.localPosition = Vector3.zero;
-				_pickedupWeapon.localRotation = Quaternion.identity;
+				_pickedupWeapon.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
 			}
 			else if (_pickedupWeapon != null)//drop weapon
 			{

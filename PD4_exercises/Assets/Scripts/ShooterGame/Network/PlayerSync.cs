@@ -40,13 +40,14 @@ namespace PD4.ShooterGame.Network
 		[Rpc(SendTo.Everyone)]
 		public void SetWeaponRpc(ulong id)
 		{
-			Model.PickedUpWeapon = GamePresenter.FindWeaponById(id).Model;
+			Model.PickedUpWeapon = GamePresenter.FindWeaponById(id)?.Model;
 		}
 
-		[Rpc(SendTo.Everyone)]
+		[Rpc(SendTo.Server)]
 		public void FireWeaponRpc()
 		{
-			Model.PickedUpWeapon.Fire();
+			var weaponPresenter = GamePresenter.FindWeaponById(Model.PickedUpWeapon.Id);
+			weaponPresenter.Sync.FireRpc();
 		}
 
 		[Rpc(SendTo.Everyone)]

@@ -26,7 +26,6 @@ namespace PD4.ShooterGame.Network
 
 		private void OnAmmoChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
 		{
-
 			if (!IsServer) return;
 			var model = (WeaponModel)sender;
 			switch (e.PropertyName)
@@ -39,8 +38,16 @@ namespace PD4.ShooterGame.Network
 			}
 		}
 
-		[Rpc(SendTo.Everyone)]
+		[Rpc(SendTo.Server)]
 		public void FireRpc()
+		{
+			if (Model.Ammo == 0) return;
+			--Model.Ammo;
+			WeaponFiredRPC();
+		}
+
+		[Rpc(SendTo.Everyone, InvokePermission = RpcInvokePermission.Server)]
+		public void WeaponFiredRPC()
 		{
 			Model.Fire();
 		}

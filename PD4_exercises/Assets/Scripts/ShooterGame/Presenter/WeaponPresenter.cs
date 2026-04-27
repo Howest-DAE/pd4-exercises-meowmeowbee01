@@ -14,12 +14,12 @@ namespace PD4.ShooterGame.Presenter
 		[SerializeField] private Rigidbody _rigidBody;
 		[SerializeField] private GameObject _muzzleFlashObject;
 
-		private WeaponSync _sync;
+		public WeaponSync Sync { get; private set; }
 		private void Awake()
 		{
 			Model = new();
-			_sync = GetComponent<WeaponSync>();
-			_sync.Model = Model;
+			Sync = GetComponent<WeaponSync>();
+			Sync.Model = Model;
 		}
 
 		private void Start()
